@@ -1,0 +1,42 @@
+[build]
+  command   = "npm run build"
+  publish   = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redirect /docs to /docs/quickstart as the landing page
+[[redirects]]
+  from   = "/docs"
+  to     = "/docs/quickstart"
+  status = 302
+
+# SPA fallback — Docusaurus handles its own routing, but just in case
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"

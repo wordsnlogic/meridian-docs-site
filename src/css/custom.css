@@ -1,0 +1,211 @@
+/* Meridian Docs – Custom Theme */
+
+:root {
+  /* Primary: Meridian indigo-blue */
+  --ifm-color-primary: #5469D4;
+  --ifm-color-primary-dark: #4459c9;
+  --ifm-color-primary-darker: #3d52c4;
+  --ifm-color-primary-darkest: #2f43b3;
+  --ifm-color-primary-light: #6478d9;
+  --ifm-color-primary-lighter: #6b7fdb;
+  --ifm-color-primary-lightest: #8494e2;
+
+  --ifm-code-font-size: 93%;
+  --ifm-font-family-monospace: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', Menlo, monospace;
+
+  --docusaurus-highlighted-code-line-bg: rgba(84, 105, 212, 0.1);
+
+  /* Accent teal */
+  --meridian-accent: #00B8A3;
+  --meridian-accent-light: #E6F7F5;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #7B91E8;
+  --ifm-color-primary-dark: #6478df;
+  --ifm-color-primary-darker: #5b6fdb;
+  --ifm-color-primary-darkest: #4459c9;
+  --ifm-color-primary-light: #92a4ed;
+  --ifm-color-primary-lighter: #9badef;
+  --ifm-color-primary-lightest: #b5c0f5;
+  --docusaurus-highlighted-code-line-bg: rgba(123, 145, 232, 0.15);
+}
+
+/* ---- Navbar ---- */
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: none;
+}
+
+.navbar-dashboard-btn {
+  background: var(--ifm-color-primary);
+  color: white !important;
+  border-radius: 6px;
+  padding: 6px 14px !important;
+  font-weight: 600;
+  font-size: 13px;
+}
+.navbar-dashboard-btn:hover {
+  background: var(--ifm-color-primary-dark);
+  text-decoration: none !important;
+}
+
+/* ---- Announcement bar ---- */
+div[class*='announcementBar'] {
+  font-size: 13.5px;
+}
+
+/* ---- Sidebar ---- */
+.menu__link--active {
+  font-weight: 600;
+}
+
+/* ---- Doc content ---- */
+.markdown h1:first-child {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.markdown > p:first-of-type {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ---- Code blocks ---- */
+.prism-code {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ---- Admonitions (match mockup callout style) ---- */
+.admonition {
+  border-radius: 8px;
+  border-left-width: 3px;
+}
+
+/* ---- API method badges (used in MDX) ---- */
+.badge--get {
+  background: #ECFDF5;
+  color: #065F46;
+  border: none;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  margin-right: 8px;
+}
+.badge--post {
+  background: #EFF6FF;
+  color: #1E40AF;
+  border: none;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  margin-right: 8px;
+}
+.badge--delete {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: none;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  margin-right: 8px;
+}
+
+/* ---- Endpoint path block ---- */
+.endpoint-path {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 14px;
+  background: var(--ifm-code-background);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin: 12px 0 20px;
+}
+
+/* ---- Parameter table ---- */
+.param-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 12px 0 24px;
+}
+.param-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-surface-color);
+}
+.param-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.param-table tr:last-child td { border-bottom: none; }
+.param-name {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 13px;
+  font-weight: 500;
+}
+.param-type {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 2px;
+}
+.param-required {
+  font-size: 10px;
+  font-weight: 700;
+  color: #B91C1C;
+  background: #FEE2E2;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 6px;
+}
+.param-optional {
+  font-size: 10px;
+  color: var(--ifm-color-emphasis-500);
+  margin-left: 6px;
+}
+
+/* ---- Homepage hero override ---- */
+.hero--primary {
+  background: linear-gradient(135deg, #1A1F36 0%, #2D3561 100%);
+}
+.hero__title { font-size: 2.8rem; font-weight: 800; }
+.hero__subtitle { font-size: 1.1rem; opacity: 0.8; }
+
+/* ---- Card grid (homepage) ---- */
+.col .card {
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  transition: all 0.15s;
+}
+.col .card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(84, 105, 212, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ---- Changelog (blog) ---- */
+.blog-wrapper h1 { font-size: 1.6rem; }

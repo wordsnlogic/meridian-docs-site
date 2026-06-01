@@ -1,0 +1,116 @@
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #1A1F36 0%, #2D3561 100%);
+  color: white;
+  padding: 72px 48px;
+  text-align: center;
+}
+.heroLabel {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #93C5FD;
+  margin-bottom: 16px;
+}
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: white;
+}
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: #CBD5E1;
+  max-width: 540px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+.heroButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Main content */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Sections */
+.section {
+  padding: 48px 0;
+}
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.sectionSubtitle {
+  font-size: 15px;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 24px;
+}
+
+/* Card grids */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .grid3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid3, .grid2 { grid-template-columns: 1fr; }
+  .hero { padding: 48px 24px; }
+  .heroTitle { font-size: 2rem; }
+}
+
+/* Cards */
+.card {
+  display: block;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none !important;
+  color: var(--ifm-font-color-base) !important;
+  background: var(--ifm-background-color);
+  transition: all 0.15s ease;
+}
+.card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 16px rgba(84, 105, 212, 0.12);
+  transform: translateY(-2px);
+}
+.cardIcon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.cardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.cardDesc {
+  font-size: 13.5px;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.5;
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  margin: 0;
+}
