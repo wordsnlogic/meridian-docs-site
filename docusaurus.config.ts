@@ -1,6 +1,14 @@
+import 'dotenv/config';
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+
+const algoliaSearchConfig = {
+  appId: process.env.ALGOLIA_APP_ID ?? 'QKWNP60CVF',
+  apiKey: process.env.ALGOLIA_API_KEY ?? 'b1928c536354dd1869d891ba9d3307a4',
+  indexName: process.env.ALGOLIA_INDEX_NAME ?? 'meridian_docs',
+  contextualSearch: true,
+} as const;
 
 const config: Config = {
   title: 'Meridian Docs',
@@ -110,12 +118,7 @@ const config: Config = {
         },
       ],
     },
-    algolia: {
-      appId: 'YOUR_APP_ID',
-      apiKey: 'YOUR_SEARCH_API_KEY',
-      indexName: 'meridian_docs',
-      contextualSearch: true,
-    },
+    algolia: algoliaSearchConfig,
     footer: {
       style: 'dark',
       links: [
