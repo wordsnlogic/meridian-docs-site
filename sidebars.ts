@@ -74,6 +74,13 @@ const sidebars: SidebarsConfig = {
         'compliance/global-compliance',
       ],
     },
+    {
+      type: 'category',
+      label: 'About This Project',
+      items: [
+        'how-we-built-this',
+      ],
+    },
   ],
 
   apiSidebar: [

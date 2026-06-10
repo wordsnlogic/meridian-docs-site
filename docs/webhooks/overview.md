@@ -1,5 +1,5 @@
 ---
-id: webhooks-overview
+id: overview
 title: Webhooks Overview
 sidebar_label: Overview
 description: Receive real-time event notifications when activity occurs in your Meridian account.

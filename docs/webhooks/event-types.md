@@ -1,5 +1,5 @@
 ---
-id: webhooks-event-types
+id: event-types
 title: Event Types
 sidebar_label: Event Types
 description: A reference of all Meridian webhook event types.
