@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  SECRETS_SCAN_OMIT_KEYS = "ALGOLIA_API_KEY"
 
 # Redirect /docs to /docs/quickstart as the landing page
 [[redirects]]
