@@ -31,8 +31,8 @@ const config: Config = {
   url: 'https://meridian-docs.netlify.app',
   baseUrl: '/',
 
-  organizationName: 'meridian-fintech',
-  projectName: 'meridian-docs',
+  organizationName: 'wordsnlogic',
+  projectName: 'meridian-docs-site',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -48,7 +48,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/meridian-fintech/meridian-docs/tree/main/',
+          editUrl: 'https://github.com/wordsnlogic/meridian-docs-site/tree/main/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
         },
@@ -115,15 +115,9 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/meridian-fintech/meridian-docs',
+          href: 'https://github.com/wordsnlogic/meridian-docs-site',
           label: 'GitHub',
           position: 'right',
-        },
-        {
-          href: 'https://dashboard.meridian.dev',
-          label: 'Dashboard →',
-          position: 'right',
-          className: 'navbar-dashboard-btn',
         },
       ],
     },
@@ -153,9 +147,7 @@ const config: Config = {
           title: 'Resources',
           items: [
             { label: 'Changelog', to: '/changelog' },
-            { label: 'Status', href: 'https://status.meridian.dev' },
-            { label: 'GitHub', href: 'https://github.com/meridian-fintech/meridian-docs' },
-            { label: 'Support', href: 'https://support.meridian.dev' },
+            { label: 'GitHub', href: 'https://github.com/wordsnlogic/meridian-docs-site' },
           ],
         },
       ],

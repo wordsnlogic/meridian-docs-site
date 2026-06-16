@@ -5,8 +5,6 @@ sidebar_label: How We Built This
 description: A step-by-step guide to replicating the Meridian docs site using Docusaurus, GitHub Actions, and Netlify.
 ---
 
-# How We Built This Docs Site
-
 This page documents the full process for building the Meridian documentation site — from a blank folder to a deployed, versioned, searchable docs site. Everything here is reproducible for any technical writing or developer documentation project.
 
 ## What we built
@@ -181,7 +179,7 @@ The homepage is React — not Markdown — so you have full control over layout.
 
 Create Markdown files in `docs/` organized in subfolders matching your sidebar:
 
-```
+```text
 docs/
   quickstart.md
   authentication.md
@@ -250,7 +248,7 @@ This is a danger notice.
 
 Name blog files with the date prefix:
 
-```
+```text
 blog/
   2026-05-15-v2-4-release.md
   2026-03-10-v2-3-release.md
@@ -302,7 +300,123 @@ Create `netlify.toml` at the root of your project:
 
 ---
 
-## Step 9 — Set up GitHub Actions
+## Step 9 — Set up Algolia search (full walkthrough)
+
+This expands on the brief Algolia mention in Step 2. Search requires wiring together three services: Algolia, Docusaurus, and Netlify.
+
+### 9a — Create an Algolia account and index
+
+1. Sign up at [algolia.com](https://algolia.com)
+2. Create a new application
+3. Go to **Search → Indexes** and create an index — use a simple alphanumeric name with underscores (e.g. `meridian_docs`). Spaces and special characters cause problems later.
+4. Go to **Settings → API Keys** and copy:
+   - **Application ID**
+   - **Search-Only API Key** (not the Admin key)
+
+### 9b — Verify your domain in Algolia
+
+Algolia requires domain verification before the crawler can index your site.
+
+1. In the Algolia dashboard go to **Settings → Domains** and click **Verify domain**
+2. Add the verification meta tag to your Docusaurus site via `headTags` in `docusaurus.config.ts`:
+
+   ```ts
+   const config: Config = {
+     title: 'Your Docs',
+     headTags: [
+       {
+         tagName: 'meta',
+         attributes: {
+           name: 'algolia-site-verification',
+           content: 'YOUR_VERIFICATION_CODE',
+         },
+       },
+     ],
+     // ...
+   };
+   ```
+
+3. Deploy the site, then click **Verify** in Algolia
+
+### 9c — Wire up the search config in Docusaurus
+
+Use environment variables — never hardcode API keys in source:
+
+```ts
+// docusaurus.config.ts
+const algoliaSearchConfig = {
+  appId:    process.env.ALGOLIA_APP_ID    ?? '',
+  apiKey:   process.env.ALGOLIA_API_KEY   ?? '',
+  indexName: process.env.ALGOLIA_INDEX_NAME ?? 'meridian_docs',
+  contextualSearch: true,
+} as const;
+
+// then inside themeConfig:
+algolia: algoliaSearchConfig,
+```
+
+Create a `.env.example` file so future contributors know what's needed:
+
+```bash
+# Copy to .env and fill in real values. Do not commit .env.
+ALGOLIA_APP_ID=YOUR_APP_ID
+ALGOLIA_API_KEY=YOUR_SEARCH_API_KEY
+ALGOLIA_INDEX_NAME=meridian_docs
+```
+
+Add `.env` to `.gitignore` if it isn't already.
+
+### 9d — Set environment variables in Netlify
+
+:::caution Free plan limitation
+The **team-level** shared environment variables page in Netlify requires a paid plan. Use **site-level** env vars instead — these are free.
+:::
+
+1. In Netlify, click into your **specific site** (not the team dashboard)
+2. Go to **Site configuration → Environment variables**
+3. Add three variables:
+
+| Key | Value |
+| --- | --- |
+| `ALGOLIA_APP_ID` | your Application ID |
+| `ALGOLIA_API_KEY` | your Search-Only API Key |
+| `ALGOLIA_INDEX_NAME` | `meridian_docs` |
+
+:::tip Index name must match exactly
+The value of `ALGOLIA_INDEX_NAME` must match the index name in Algolia character-for-character. If the names don't match, search returns no results. Algolia index names can only use alphanumeric characters and underscores — no spaces.
+:::
+
+### 9e — Prevent Netlify's secrets scanner from blocking the build
+
+Netlify scans build output for exposed secrets. Because the Algolia Search API key ends up in the client-side JavaScript bundle (this is intentional — it's a public read-only key), you need to tell Netlify to allow it:
+
+```toml
+# netlify.toml
+[build.environment]
+  NODE_VERSION = "20"
+  SECRETS_SCAN_OMIT_KEYS = "ALGOLIA_API_KEY"
+```
+
+### 9f — Trigger a redeploy and verify
+
+1. Push your changes to `main`
+2. In Netlify: **Deploys → Trigger deploy → Deploy site**
+3. Check the deploy log — Netlify will show `ALGOLIA_*: ***` confirming the variables were loaded
+4. Once the deploy goes green, test the search bar on your live site
+
+### 9g — Check that the index has content
+
+If the search bar appears but returns no results, the index may be empty.
+
+1. Log into Algolia → **Search → Indexes → your index → Browse tab**
+2. If it shows 0 records, the crawler hasn't run yet
+3. Go to **Data sources → Crawler**, create a new crawler, point it at your live site URL, and run it
+
+The crawler populates the index by scraping your site's HTML. Once it finishes, search results appear immediately — no redeploy needed.
+
+---
+
+## Step 10 — Set up GitHub Actions
 
 Create two workflow files in `.github/workflows/`.
 
@@ -368,7 +482,7 @@ Add `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` as secrets in your GitHub repo un
 
 ---
 
-## Step 10 — Initialize Git and deploy
+## Step 11 — Initialize Git and deploy
 
 ```bash
 git init
@@ -379,6 +493,7 @@ git push -u origin main
 ```
 
 Then in Netlify:
+
 1. Click **Add new site → Import an existing project**
 2. Connect your GitHub account and select the repo
 3. Netlify detects `netlify.toml` automatically — click **Deploy**
@@ -389,7 +504,7 @@ Every push to `main` after this will auto-deploy. Every pull request gets a uniq
 
 ## Project structure reference
 
-```
+```text
 my-docs-site/
 ├── docs/                        # All Markdown content
 │   ├── quickstart.md
@@ -416,7 +531,7 @@ my-docs-site/
 ## Tools used
 
 | Tool | Purpose |
-|---|---|
+| --- | --- |
 | [Docusaurus v3](https://docusaurus.io) | Static site generator for documentation |
 | [GitHub Actions](https://github.com/features/actions) | CI/CD pipeline |
 | [Netlify](https://netlify.com) | Hosting and deployment |

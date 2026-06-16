@@ -191,6 +191,21 @@ Run these inside the `meridian-docs-site` folder.
 
 ## Deploy your own copy to Netlify
 
+## Algolia search
+
+To enable Algolia DocSearch locally, copy the example env file and add your keys:
+
+```bash
+cp .env.example .env
+# Edit .env and set ALGOLIA_APP_ID and ALGOLIA_API_KEY
+```
+
+Restart the dev server after updating the file:
+
+```bash
+npm start
+```
+
 Follow these steps to put your version of the site live on the internet for free.
 
 ### 1 — Push to GitHub
