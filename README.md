@@ -307,6 +307,6 @@ See [docs/how-we-built-this.md](docs/how-we-built-this.md) for a full step-by-st
 
 ## About this project
 
-Built as a live demo for **State of Docs — May 7, 2026**, a [Write the Docs Bay Area](https://www.meetup.com/write-the-docs-bay-area/) event.
+Built as a live demo for **State of Docs — May 7, 2026**, a [Write the Docs Bay Area](https://luma.com/l8cr9nhw) event.
 
 Presenter: **Doug Purcell** — Technical Writer, [Words n Logic](https://wordsandlogic.com)
