@@ -1,6 +1,6 @@
 # Meridian Docs
 
-A fully-featured developer documentation site built with [Docusaurus v3](https://docusaurus.io), deployed on [Netlify](https://netlify.com). This is the live demo project for the **State of Docs** talk — showing how a technical writer can build, version, and deploy a production-ready docs site without being a software engineer.
+A fully-featured developer documentation site built with [Docusaurus v3](https://docusaurus.io), deployed on [Netlify](https://netlify.com). This is the live demo project for the **Write the Docs Bay Area* talk — showing how a technical writer can build, version, and deploy a production-ready docs site without being a software engineer.
 
 **Live site:** [meridian-docs.netlify.app](https://meridian-docs.netlify.app)
 
@@ -307,6 +307,6 @@ See [docs/how-we-built-this.md](docs/how-we-built-this.md) for a full step-by-st
 
 ## About this project
 
-Built as a live demo for **State of Docs — May 7, 2026**, a [Write the Docs Bay Area](https://luma.com/l8cr9nhw) event.
+Built as a live demo for **Write the Docs Bay Area — May 7, 2026**, a [Write the Docs Bay Area](https://luma.com/l8cr9nhw) event.
 
 Presenter: **Doug Purcell** — Technical Writer, [Words n Logic](https://wordsandlogic.com)
