@@ -2,13 +2,19 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const algoliaSearchConfig = {
-  // Prefer environment variables and avoid shipping real keys in source.
-  appId: process.env.ALGOLIA_APP_ID ?? '',
-  apiKey: process.env.ALGOLIA_API_KEY ?? '',
-  indexName: process.env.ALGOLIA_INDEX_NAME ?? 'meridian_docs',
-  contextualSearch: true,
-} as const;
+const algoliaAppId = process.env.ALGOLIA_APP_ID;
+const algoliaApiKey = process.env.ALGOLIA_API_KEY;
+const algoliaIndexName = process.env.ALGOLIA_INDEX_NAME ?? 'meridian_docs';
+
+const algoliaSearchConfig =
+  algoliaAppId && algoliaApiKey
+    ? {
+        appId: algoliaAppId,
+        apiKey: algoliaApiKey,
+        indexName: algoliaIndexName,
+        contextualSearch: true,
+      }
+    : undefined;
 
 const config: Config = {
   title: 'Meridian Docs',
@@ -121,7 +127,7 @@ const config: Config = {
         },
       ],
     },
-    algolia: algoliaSearchConfig,
+    ...(algoliaSearchConfig ? { algolia: algoliaSearchConfig } : {}),
     footer: {
       style: 'dark',
       links: [

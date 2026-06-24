@@ -277,13 +277,9 @@ The `{/* truncate */}` marker is where the preview cuts off on the index page.
 
 ## Step 8 — Add a Netlify config
 
-Create `netlify.toml` at the root of your project:
+Create `netlify.toml` at the root of your project. GitHub Actions will run the build; Netlify only needs the publish rules, redirects, headers, and environment settings:
 
 ```toml
-[build]
-  command   = "npm run build"
-  publish   = "build"
-
 [build.environment]
   NODE_VERSION = "20"
 
@@ -443,7 +439,7 @@ jobs:
       - run: npm run build
 ```
 
-**`deploy.yml`** — deploys to Netlify on push to `main` and posts preview URLs on PRs:
+**`deploy.yml`** — runs the build in GitHub Actions, then deploys to Netlify on push to `main` and posts preview URLs on PRs:
 
 ```yaml
 name: Deploy to Netlify
@@ -496,7 +492,7 @@ Then in Netlify:
 
 1. Click **Add new site → Import an existing project**
 2. Connect your GitHub account and select the repo
-3. Netlify detects `netlify.toml` automatically — click **Deploy**
+3. Netlify receives the uploaded `build/` output from GitHub Actions, then posts the deploy
 
 Every push to `main` after this will auto-deploy. Every pull request gets a unique preview URL posted as a comment.
 

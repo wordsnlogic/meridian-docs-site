@@ -5,8 +5,6 @@ sidebar_label: Subscriptions
 description: Create recurring billing with Products, Prices, and Subscriptions in Meridian.
 ---
 
-# Subscriptions
-
 Subscriptions let you charge customers on a recurring basis — monthly, annually, or on any custom interval. Meridian handles invoicing, payment retries, dunning, and cancellations automatically.
 
 ## How subscriptions work
@@ -55,7 +53,7 @@ console.log(subscription.status); // 'active'
 ## Subscription statuses
 
 | Status | Description |
-|---|---|
+| --- | --- |
 | `incomplete` | Initial payment pending. |
 | `incomplete_expired` | Initial payment failed; subscription expired. |
 | `trialing` | In a free trial period. |
@@ -82,7 +80,7 @@ await meridian.subscriptions.update('sub_Xyz123', {
 Subscribe to these webhook events to keep your app in sync:
 
 | Event | When to act |
-|---|---|
+| --- | --- |
 | `customer.subscription.created` | Provision access for new subscriber |
 | `customer.subscription.updated` | Update access on plan change |
 | `customer.subscription.deleted` | Revoke access on cancellation |
